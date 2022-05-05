@@ -1,7 +1,7 @@
 class Person{
 
 
-  String name=null;
+  late String name;
   
   String? email=null;
 
@@ -10,7 +10,6 @@ class Person{
     this.email=email;
   }
 }
-
 void main(){
   var p1= new Person('Vivek','vivek@gmail.com');
   var p2 = Person('Sanjay','sanjay@gmail.com');

@@ -1,7 +1,7 @@
 void main(){
 
 
-  var values=[1,2,3,4,5];
+  var values=[1,2,3,4,5];  //auto detected. List<int> ---> List of int
 
   print(values);
 
@@ -13,7 +13,7 @@ void main(){
 
 //  values[0]='hello'; //can't assign String to an List<int>
 
- // print(values[100]); //error
+// print(values[100]); //error
 
   for(var value in values)
     print(value);

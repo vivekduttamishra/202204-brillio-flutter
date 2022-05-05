@@ -1,7 +1,7 @@
 void main(){
 
-
-  var values=[1,2,3,'hello',4,5];
+  //because it contains both string and integer it is considered as 
+  var values=[1,2,3,'hello',4,5]; //List<Object>
 
   print(values);
 
