@@ -11,19 +11,11 @@ void main(){
 
   Object p3= Point(1,1); //we have a point object referred by Object Reference
 
+  print(p3.runtimeType);
 
 
 
 
-
-
-  //print(p3.x);  //I get an error because Object reference doesn't know about property x
-
-  dynamic p4 = Point(2,2);
-
-  print(p4.x); 
-  
-  print(p4.z);
 
 
 }
