@@ -15,6 +15,7 @@ class Box extends StatelessWidget{
     return Container(
       color:color, 
       width:size, 
+    
       height:size, 
       margin:EdgeInsets.all(margin),
     );

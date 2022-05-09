@@ -22,6 +22,7 @@ class ItemsScreen extends StatelessWidget {
     return Scaffold(
       appBar: createAppBar(context),
       body: Column(
+        
         children:[
 
             Row(
@@ -54,9 +55,13 @@ class ItemsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
             ),
 
-            Column(
-              children: getFiveStar(), 
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(
+              width:300,
+              child: Column(
+                crossAxisAlignment:CrossAxisAlignment.stretch,
+                children: getFiveStar(), 
+                
+              ),
             ),
 
              
