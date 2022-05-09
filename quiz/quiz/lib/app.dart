@@ -1,6 +1,9 @@
 
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'screens/question-screen.dart';
 import 'screens/welcome-screen.dart';
 
 class App extends StatelessWidget {
@@ -9,9 +12,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return const MaterialApp(
+    return  MaterialApp(
       title: 'Quizzy',
-      home: WelcomeScreen(),
+      home: QuestionScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.lightGreen,
+        canvasColor: Colors.yellow.shade50,
+        
+      ) ,
     );
   }
 

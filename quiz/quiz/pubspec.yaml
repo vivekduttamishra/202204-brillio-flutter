@@ -73,25 +73,19 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
- fonts:
+  fonts:
    - family: Handlee
      fonts:
        - asset: assets/fonts/Handlee-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
    - family: MarckScript
      fonts:
        - asset: assets/fonts/MarckScript-Regular.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
    - family: Oswald
      fonts:
-       - asset: assets/fonts/MarckScript-Regular.ttf
-       - asset: fonts/Oswald-Bold.ttf
+       - asset: assets/fonts/Oswald-Bold.ttf
          weight: 700
-       - asset: fonts/Oswald-ExtraLight.ttf
+       - asset: assets/fonts/Oswald-ExtraLight.ttf
          style: italic
-
    - family: PatricHand
      fonts:
        - asset: assets/fonts/PatrickHand-Regular.ttf

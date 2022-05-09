@@ -21,6 +21,7 @@ class WelcomeScreen extends StatelessWidget {
                   Text('Welcome to',
                     style: TextStyle(
                       color: Colors.red,
+                      fontFamily: 'MarckScript',
                       fontSize:40,
                     ),
                   ),
@@ -28,10 +29,19 @@ class WelcomeScreen extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.red,
                       fontSize:60,
-                      fontFamily:'courier',
+                      fontFamily:'PatricHand',
                       fontWeight:FontWeight.w700,
+                     
                     ),
-                  )
+                  ),
+
+                  ElevatedButton(
+                    onPressed: (){
+                      print('Let us Start');
+                    },
+                    child: Text('Start'),
+                  ),
+
                 ],
               ), 
             );
