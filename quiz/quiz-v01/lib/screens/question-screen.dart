@@ -10,32 +10,6 @@ class QuestionScreen extends StatelessWidget {
 
   QuestionScreen(this.question, {Key? key}) : super(key: key);
 
-
-  void handleAnswer(int index){
-      print('You selected $index');
-  }
-
-  List<Widget> getAnswerButtons(){
-
-    List<Widget> options= [];
-
-    for(int i =0 ; i<question.answers.length;i++){
-      var answer= question.answers[i];
-      var index=i;
-      var button=OutlinedButton(
-              onPressed: () =>handleAnswer(index),
-              child: Text(
-                answer,
-                style: h2,
-              ),
-            );
-
-        options.add(button);
-    }
-    return options;
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +30,46 @@ class QuestionScreen extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-           
-           ...getAnswerButtons(),
-               
+            OutlinedButton(
+              onPressed: () {
+                print('You selected Nehru');
+              },
+              child: Text(
+                "Nehru",
+                style: h2,
+              ),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                print('You selected Bose');
+              },
+              child: Text(
+                "Bose",
+                style: h2,
+              ),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                print('You selected Patel');
+              },
+              child: Text(
+                "Sardard Ballav Bhai Patel",
+                style: h2,
+              ),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                print('You selected Tagore');
+              },
+              child: Text(
+                "Rabindra Nath Tagore",
+                style: TextStyle(
+                  fontFamily: 'PatricHand',
+                  fontSize: 25,
+                  color: Colors.black,
+                ),
+              ),
+            ),
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
