@@ -1,33 +1,82 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, curly_braces_in_flow_control_structures
 
 import 'package:flutter/material.dart';
 import 'package:quiz/model/question.dart';
+import '../model/quizMaster.dart';
 import '../styles.dart';
 
-class QuestionScreen extends StatelessWidget {
+class QuestionScreen extends StatefulWidget {
+  
 
-  final Question question;
+  final QuizMaster quizMaster;
 
-  QuestionScreen(this.question, {Key? key}) : super(key: key);
+  QuestionScreen(this.quizMaster, {Key? key}) : super(key: key){
+    quizMaster.start(5);    
+  }
 
+  @override
+  State<QuestionScreen> createState() => _QuestionScreenState();
+}
+
+class _QuestionScreenState extends State<QuestionScreen> {
+
+  
+  int questionNumber=0;
+  
+  void navigatePrevious(){
+
+    if(questionNumber>0)
+      setState(()=> questionNumber--);     
+
+  }
+
+  void navigateNext(){
+    if(questionNumber<widget.quizMaster.totalQuestions-1)
+      setState((){
+        questionNumber++;
+      });      
+  }
 
   void handleAnswer(int index){
-      print('You selected $index');
+      widget.quizMaster.recordResponse(index);
+      print('setting response: ${widget.quizMaster.quiz.answers[index]}');
+      setState((){}); //we need to update the UI.
+      //navigateNext();
   }
 
   List<Widget> getAnswerButtons(){
 
     List<Widget> options= [];
+    var question = widget.quizMaster.getQuestion(questionNumber);
+
+    var correctAnswer= question.correctAnswerIndex;
+    var givenAnswer = widget.quizMaster.quiz.answers[questionNumber];
+
+    print('question: ${question.question}\t correctAnswer:$correctAnswer\tgivenAnswer=$givenAnswer');
 
     for(int i =0 ; i<question.answers.length;i++){
       var answer= question.answers[i];
       var index=i;
+      var color = bodyColor;
+      if(givenAnswer==i){ //it is the current answer that is given
+          color= givenAnswer==correctAnswer? Colors.lightGreen: Colors.red.shade400;
+      }
+
+      void handler(){
+          handleAnswer(index);
+      }
+
       var button=OutlinedButton(
-              onPressed: () =>handleAnswer(index),
+              onPressed: givenAnswer==-1 ? handler : null,
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(color),                
+              ),
               child: Text(
                 answer,
                 style: h2,
+                textAlign:TextAlign.center,
               ),
+              
             );
 
         options.add(button);
@@ -38,9 +87,12 @@ class QuestionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var question= widget.quizMaster.getQuestion(questionNumber);
+    var nextHandler= questionNumber< widget.quizMaster.totalQuestions-1? navigateNext:null;
+    var previousHandler=questionNumber>0 ? navigatePrevious:null;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quizzy Question #1'),
+        title: Text('Quizzy '),
       ),
       body: Container(
         color: bodyColor,
@@ -64,16 +116,21 @@ class QuestionScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: (){print('previous');},
+                  onPressed: previousHandler,
                  
                   child: Icon(Icons.arrow_back, 
-                    color: bodyTextColorAlt,
+                    color: previousHandler==null?Colors.transparent: bodyTextColorAlt,
                     ),
                 ),
+                Text('${widget.quizMaster.currentQuestion+1} of ${widget.quizMaster.totalQuestions}',
+                  style: TextStyle(
+                    color: bodyTextColorAlt,
+                  ),
+                ),
                 TextButton(
-                  onPressed: (){print('next');},
+                  onPressed: nextHandler,
                   child: Icon(Icons.arrow_forward,
-                  color: bodyTextColorAlt,
+                  color: nextHandler==null?Colors.transparent:bodyTextColorAlt,
                   ),
                 ),
               ],

@@ -11,18 +11,13 @@ import 'styles.dart';
 class App extends StatelessWidget {
   final QuizMaster quizMaster;
 
-  App(this.quizMaster,{Key? key}) : super(key: key){
-    quizMaster.start(5);
-  }
+  App(this.quizMaster,{Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    
-    var question= quizMaster.getNextQuestion();
-
+  Widget build(BuildContext context) {    
     return  MaterialApp(
       title: 'Quizzy',
-      home: QuestionScreen(question),
+      home: QuestionScreen(quizMaster),
       theme:ThemeData(
         primarySwatch: headerColor
       ),

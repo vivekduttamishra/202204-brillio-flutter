@@ -23,6 +23,7 @@ class Quiz{
   }
 
   bool registerResponse(int questionIndex, int answerIndex){
+    print('setting the answers for Quesiton $questionIndex to $answerIndex ');
     answers[questionIndex]=answerIndex;
     return questions[questionIndex].correctAnswerIndex==answerIndex; //this will give the result
   }

@@ -56,11 +56,23 @@ class QuizMaster{
       return quiz.getQuestion(currentQuestion);
     }
       
-  
+  Question getQuestion(int index){
+
+    if(index>=0 && index<quiz.questions.length){
+      currentQuestion=index;
+      return quiz.getQuestion(index);
+    }
+    else
+    {
+      throw Exception('invalid quesiton index $index');
+    }
+  }
 
   bool recordResponse(int answerIndex){
-    if(checkResponse()==Response.none){
-        this.totalAnswered++;
+    print('quizMaster setting for $currentQuestion answer $answerIndex');
+    
+    if(quiz.answers[answerIndex]==-1){
+        totalAnswered++;
         quiz.registerResponse(currentQuestion, answerIndex);
         return true;
     } else
