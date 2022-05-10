@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import '../styles.dart';
 
 class QuestionScreen extends StatelessWidget {
   QuestionScreen({Key? key}) : super(key: key);
@@ -12,16 +13,14 @@ class QuestionScreen extends StatelessWidget {
         title: Text('Quizzy Question #1'),
       ),
       body: Container(
+        color: bodyColor,
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               'Who first called Gandhiji as the father of the nation?',
-              style: TextStyle(
-                fontFamily: 'Handlee',
-                fontSize: 30,
-              ),
+              style: h1,
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -33,11 +32,7 @@ class QuestionScreen extends StatelessWidget {
               },
               child: Text(
                 "Nehru",
-                style: TextStyle(
-                  fontFamily: 'PatricHand',
-                  fontSize: 25,
-                  color: Colors.black,
-                ),
+                style: h2,
               ),
             ),
             OutlinedButton(
@@ -46,11 +41,7 @@ class QuestionScreen extends StatelessWidget {
               },
               child: Text(
                 "Bose",
-                style: TextStyle(
-                  fontFamily: 'PatricHand',
-                  fontSize: 25,
-                  color: Colors.black,
-                ),
+                style: h2,
               ),
             ),
             OutlinedButton(
@@ -59,11 +50,7 @@ class QuestionScreen extends StatelessWidget {
               },
               child: Text(
                 "Sardard Ballav Bhai Patel",
-                style: TextStyle(
-                  fontFamily: 'PatricHand',
-                  fontSize: 25,
-                  color: Colors.black,
-                ),
+                style: h2,
               ),
             ),
             OutlinedButton(
@@ -86,11 +73,15 @@ class QuestionScreen extends StatelessWidget {
                 TextButton(
                   onPressed: (){print('previous');},
                  
-                  child: Icon(Icons.arrow_back),
+                  child: Icon(Icons.arrow_back, 
+                    color: bodyTextColorAlt,
+                    ),
                 ),
                 TextButton(
                   onPressed: (){print('next');},
-                  child: Icon(Icons.arrow_forward),
+                  child: Icon(Icons.arrow_forward,
+                  color: bodyTextColorAlt,
+                  ),
                 ),
               ],
             ),

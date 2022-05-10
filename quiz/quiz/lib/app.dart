@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'screens/question-screen.dart';
 import 'screens/welcome-screen.dart';
+import 'styles.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -15,11 +16,10 @@ class App extends StatelessWidget {
     return  MaterialApp(
       title: 'Quizzy',
       home: QuestionScreen(),
-      theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
-        canvasColor: Colors.yellow.shade50,
-        
-      ) ,
+      theme:ThemeData(
+        primarySwatch: headerColor
+      ),
+      debugShowCheckedModeBanner: false,
     );
   }
 

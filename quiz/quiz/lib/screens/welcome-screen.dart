@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../styles.dart';
+
 class WelcomeScreen extends StatelessWidget {
 
 
@@ -14,35 +16,31 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return  Scaffold(
-              body: Column(
-                mainAxisAlignment:MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/quiz_logo.png'),
-                  Text('Welcome to',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontFamily: 'MarckScript',
-                      fontSize:40,
+              
+              body: Container(
+                color: bodyColor,
+                child: Column(
+                  
+                  mainAxisAlignment:MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/quiz_logo.png'),
+                    Text('Welcome to',
+                      style: h1,
                     ),
-                  ),
-                  Text('Quizzy',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize:60,
-                      fontFamily:'PatricHand',
-                      fontWeight:FontWeight.w700,
-                     
+                    Text('Quizzy',
+                      style: appTitleTextStyle,
                     ),
-                  ),
 
-                  ElevatedButton(
-                    onPressed: (){
-                      print('Let us Start');
-                    },
-                    child: Text('Start'),
-                  ),
+                    ElevatedButton(
+                      onPressed: (){
+                        print('Let us Start');
+                      },
+                      
+                      child: Text('Start'),
+                    ),
 
-                ],
+                  ],
+                ),
               ), 
             );
   }
