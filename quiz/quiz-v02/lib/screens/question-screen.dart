@@ -39,8 +39,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   void handleAnswer(int index){
       widget.quizMaster.recordResponse(index);
-      print('setting response: ${widget.quizMaster.quiz.answers[index]}');
-      setState((){}); //we need to update the UI.
+      setState((){
+        questionNumber =questionNumber ;
+      }); //we need to update the UI.
       //navigateNext();
   }
 
@@ -52,7 +53,6 @@ class _QuestionScreenState extends State<QuestionScreen> {
     var correctAnswer= question.correctAnswerIndex;
     var givenAnswer = widget.quizMaster.quiz.answers[questionNumber];
 
-    print('question: ${question.question}\t correctAnswer:$correctAnswer\tgivenAnswer=$givenAnswer');
 
     for(int i =0 ; i<question.answers.length;i++){
       var answer= question.answers[i];

@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'model/quizMaster.dart';
-import 'screens/quiz-screen.dart';
+import 'screens/question-screen.dart';
 import 'screens/welcome-screen.dart';
 import 'styles.dart';
 
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {    
     return  MaterialApp(
       title: 'Quizzy',
-      home: QuizScreen(quizMaster),
+      home: QuestionScreen(quizMaster),
       theme:ThemeData(
         primarySwatch: headerColor
       ),
