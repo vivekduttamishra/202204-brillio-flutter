@@ -16,7 +16,7 @@ class QuizMaster{
   int currentQuestion=-1;  //current question in the quiz
   int totalAnswered=0;   //total question anwered so far
   int totalQuestions=0;   //total questions in the quiz
-
+  int totalCorrectAnswer=0;
 
 
   
@@ -38,6 +38,7 @@ class QuizMaster{
      //Step 5. set a few book keeping variables
      currentQuestion=-1;
      totalAnswered=0;
+     totalCorrectAnswer=0;
   }   
 
   Question getNextQuestion(){
@@ -73,6 +74,8 @@ class QuizMaster{
     if(quiz.answers[currentQuestion]==-1){
         totalAnswered++;
         quiz.registerResponse(currentQuestion, answerIndex);
+        if(quiz.questions[currentQuestion].correctAnswerIndex==answerIndex)
+          totalCorrectAnswer++;
         return true;
     } else
       return false;

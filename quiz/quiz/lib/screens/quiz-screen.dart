@@ -8,11 +8,11 @@ import '../styles.dart';
 import '../widgets/question-panel.dart';
 
 class QuizScreen extends StatefulWidget {
-  
   final QuizMaster quizMaster;
+  final Function gotoScreen;
 
-  QuizScreen(this.quizMaster, {Key? key}) : super(key: key){
-    quizMaster.start(5);    
+  QuizScreen(this.quizMaster, {required this.gotoScreen, Key? key}) : super(key: key) {
+    quizMaster.start(5);
   }
 
   @override
@@ -20,56 +20,67 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
-  
-  int questionNumber=0;
- 
+  int questionNumber = 0;
 
-  void handleNavigate(int delta){
-    var result= questionNumber+delta;
-    if(result>=0 && result<widget.quizMaster.totalQuestions){
-      setState((){
-        questionNumber=result;
+  void handleNavigate(int delta) {
+    var result = questionNumber + delta;
+    if (result >= 0 && result < widget.quizMaster.totalQuestions) {
+      setState(() {
+        questionNumber = result;
       });
     }
   }
 
-  void handleAnswer(int index){
-      widget.quizMaster.recordResponse(index);
-      setState((){
-        questionNumber =questionNumber ;
-      }); //we need to update the UI.
-      //navigateNext();
+  void handleAnswer(int index) {
+    widget.quizMaster.recordResponse(index);
+    setState(() {
+      questionNumber = questionNumber;
+    }); //we need to update the UI.
+    //navigateNext();
+    if(widget.quizMaster.totalAnswered==widget.quizMaster.totalQuestions)
+      widget.gotoScreen("result");
   }
-
 
   @override
   Widget build(BuildContext context) {
-    var question= widget.quizMaster.getQuestion(questionNumber);
-    var totalQuestions= widget.quizMaster.totalQuestions;
-    var givenAnswer=widget.quizMaster.quiz.answers[questionNumber];
+    var question = widget.quizMaster.getQuestion(questionNumber);
+    var totalQuestions = widget.quizMaster.totalQuestions;
+    var givenAnswer = widget.quizMaster.quiz.answers[questionNumber];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quizzy '),
-      ),
+          title: Text('Quizzy '),
+          leading: Center(
+              child: Text("?",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: 'PatricHand',
+                    fontWeight: FontWeight.w700,
+                  ))),
+          actions: [
+            IconButton(
+              onPressed: () {widget.gotoScreen("result");},
+              icon: Icon(Icons.exit_to_app),
+            ),
+          ]),
       body: Container(
         color: bodyColor,
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [           
+          children: [
             QuestionPanel(
-                      question:question,
-                      givenAnswer:givenAnswer,
-                      onAnswerSelected:handleAnswer,
+              question: question,
+              givenAnswer: givenAnswer,
+              onAnswerSelected: handleAnswer,
             ),
             Spacer(),
             NavigationPanel(
-              currentQuestion:questionNumber+1, 
-              totalQuestions:totalQuestions,
-              onNavigate:handleNavigate,
+              currentQuestion: questionNumber + 1,
+              totalQuestions: totalQuestions,
+              onNavigate: handleNavigate,
             ),
-           ],
+          ],
         ),
       ),
     );

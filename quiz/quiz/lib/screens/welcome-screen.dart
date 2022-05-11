@@ -8,8 +8,9 @@ import '../styles.dart';
 
 class WelcomeScreen extends StatelessWidget {
 
+  final Function gotoScreen;
 
-  const WelcomeScreen({Key? key}) : super(key: key);
+  const WelcomeScreen({required this.gotoScreen, Key? key}) : super(key: key);
 
 
   @override
@@ -33,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
 
                     ElevatedButton(
                       onPressed: (){
-                        print('Let us Start');
+                        gotoScreen("quiz");
                       },
                       
                       child: Text('Start'),
