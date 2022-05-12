@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'models/BookManager.dart';
 import 'models/BookSeeder.dart';
-import 'screens/book-details-screen.dart';
 import 'screens/book-list-screen.dart';
 import 'screens/books-screen.dart';
 
@@ -36,7 +35,6 @@ class _AppState extends State<App> {
         debugShowCheckedModeBanner: false,
         theme:ThemeData(
           primarySwatch: Colors.green,
-          primaryColor: Color(0xFF335C67),
           appBarTheme:AppBarTheme(
             backgroundColor:Color(0xFF335C67),
             foregroundColor:Colors.white,
@@ -87,13 +85,7 @@ class _AppState extends State<App> {
           )
         ),
 
-       
-
-        routes: {
-          "/": (context)=> BookListScreen(bookManager:manager),
-          "/book-details":(context)=>BookDetailsScreen(bookManager:manager),
-        },
-        
+        home: BookListScreen(bookManager:manager),
     );
   }
 }

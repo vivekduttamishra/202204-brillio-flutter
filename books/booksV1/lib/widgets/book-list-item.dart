@@ -16,14 +16,12 @@ class BookListItem extends StatelessWidget {
     return InkWell(
       onTap: (){
 
-        // Navigator.of(context).push(
-        //       // ignore: unnecessary_new
-        //       MaterialPageRoute(
-        //         builder: 
-        //         (ctx)=> BookDetailsScreen(book) ),
-        // );
-
-        Navigator.of(context).pushNamed("/book-details",arguments: book.isbn);
+        Navigator.of(context).push(
+              // ignore: unnecessary_new
+              MaterialPageRoute(
+                builder: 
+                (ctx)=> BookDetailsScreen(book) ),
+        );
 
       },
       child: Card(
