@@ -3,30 +3,89 @@
 
 import 'package:flutter/material.dart';
 
+import 'models/BookManager.dart';
+import 'models/BookSeeder.dart';
+import 'screens/book-list-screen.dart';
 import 'screens/books-screen.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
 
-  const App({Key? key}) : super(key: key);
+  late BookManager manager;
+  App({Key? key}) : super(key: key){
+    manager=BookManager();
+    seedBooks(manager);
+  }
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+
+  BookManager get manager{
+    return widget.manager;
+  }
 
   @override
   Widget build(BuildContext context) {
-  
-    
    
     return MaterialApp(
         title:"Books",
-        home: BooksScreen(),
+       
         debugShowCheckedModeBanner: false,
         theme:ThemeData(
-          primarySwatch: Colors.lightGreen,
-          canvasColor: Colors.lime,
+          primarySwatch: Colors.green,
+          appBarTheme:AppBarTheme(
+            backgroundColor:Color(0xFF335C67),
+            foregroundColor:Colors.white,
+          ),
+          canvasColor: Color(0xFFFFF7AE),          
+          
           textTheme: ThemeData.light().textTheme.copyWith(
-           titleLarge: TextStyle(fontSize:35),
+            titleLarge: TextStyle(
+                  fontSize:24,
+                  fontFamily:'Heading',
+            ),
+            titleMedium: TextStyle(
+              fontSize:20,
+              fontFamily:'Heading',
+            ),
+            
+            titleSmall: TextStyle(
+              fontSize:18,
+              fontFamily:'Heading',
+            ),
+            headlineLarge: TextStyle(
+              fontSize:24,
+              fontFamily:'Poppins',
+            ),
+            headlineSmall: TextStyle(
+              fontSize:18,
+              fontFamily:'Poppins',
+              fontStyle: FontStyle.italic,
+            ),
+            bodyLarge: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize:18,
+            ),
+            bodyMedium: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize:16,
+              
+            ),
+            bodySmall: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize:14,
+            ),
+            labelMedium: TextStyle(
+              fontFamily: 'Heading',
+              fontSize:16,
+              color:Colors.blue,
+            )
           )
         ),
 
+        home: BookListScreen(bookManager:manager),
     );
   }
-
 }
