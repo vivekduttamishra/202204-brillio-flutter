@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/book.dart';
+import 'network-failsafe-image.dart';
 
 class BookDetails extends StatelessWidget {
   const BookDetails({
@@ -19,15 +20,19 @@ class BookDetails extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[          
+        children: <Widget>[
           Row(
             children: [
-              Image.network(
+              NetworkFailsafeImage(
                 book.cover,
                 height: 100,
+                width: 100 * 6 / 8,
+                title: book.title,
                 fit: BoxFit.contain,
               ),
-              SizedBox(width:10,),
+              SizedBox(
+                width: 10,
+              ),
               Expanded(
                 child: Text(
                   book.title,
@@ -41,10 +46,10 @@ class BookDetails extends StatelessWidget {
           Divider(),
           Text('Description', style: Theme.of(context).textTheme.headlineLarge),
           Divider(),
-          Text(book.description, 
-              style: Theme.of(context).textTheme.bodyMedium,
+          Text(
+            book.description,
+            style: Theme.of(context).textTheme.bodyMedium,
           )
-          
         ],
       ),
     );

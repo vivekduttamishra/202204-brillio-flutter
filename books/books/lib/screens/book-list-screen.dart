@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 
 import '../models/book.dart';
 import '../widgets/app-icon.dart';
+import '../widgets/book-editor.dart';
 import '../widgets/book-list-item.dart';
 import '../models/BookManager.dart';
 
 
 class BookListScreen extends StatefulWidget {
 
-  final BookManager bookManager;
-  const BookListScreen({Key? key, required this.bookManager}) : super(key: key);
+  final BookManager bookManager=BookManager();
+  BookListScreen({Key? key}) : super(key: key);
 
   @override
   State<BookListScreen> createState() => _BookListScreenState();
@@ -29,15 +30,14 @@ class _BookListScreenState extends State<BookListScreen> {
     setState((){
       books=b;
     });
-
-
   }
+
+
   @override
   Widget build(BuildContext context) {
     
     if(books.isEmpty)
       fetchBooks();
-
 
     return Scaffold(
       appBar: AppBar(
@@ -52,10 +52,38 @@ class _BookListScreenState extends State<BookListScreen> {
       ),
       body: Container(
         padding: EdgeInsets.all(10),
-        child: ListView(
-          children: books.map( (book)=>BookListItem(book)).toList(),
-        ),
-      )
+        child: createSmartList(books),
+        
+      ),
+  
     );
   }
+
+  ListView createSimpleList(books) {
+    return ListView(
+        children:books.map((book)=>BookListItem(book)).toList(),
+    );
+  }
+
+  ListView createSmartList(List<Book> books) {
+      return ListView.builder(
+        itemCount: books.length,
+
+        itemBuilder: (context, index){
+         // print('building BookListItem for ${books[index].title}');
+          return BookListItem(books[index]);
+        },
+
+      );
+
+  }
+
+  showBookEditor(BuildContext context) {
+    showModalBottomSheet(context: context, builder: (_){
+
+      return BookEditor();
+    });
+  }
+
+  
 }

@@ -3,29 +3,12 @@
 
 import 'package:flutter/material.dart';
 
-import 'models/BookManager.dart';
-import 'models/BookSeeder.dart';
 import 'screens/book-details-screen.dart';
 import 'screens/book-list-screen.dart';
-import 'screens/books-screen.dart';
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
-  late BookManager manager;
-  App({Key? key}) : super(key: key){
-    manager=BookManager();
-    seedBooks(manager);
-  }
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-
-  BookManager get manager{
-    return widget.manager;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +20,10 @@ class _AppState extends State<App> {
         theme:ThemeData(
           primarySwatch: Colors.green,
           primaryColor: Color(0xFF335C67),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+                backgroundColor: Theme.of(context).primaryColor, ),
           appBarTheme:AppBarTheme(
-            backgroundColor:Color(0xFF335C67),
+            backgroundColor:Theme.of(context).primaryColor,
             foregroundColor:Colors.white,
           ),
           canvasColor: Color(0xFFFFF7AE),          
@@ -87,11 +72,9 @@ class _AppState extends State<App> {
           )
         ),
 
-       
-
         routes: {
-          "/": (context)=> BookListScreen(bookManager:manager),
-          "/book-details":(context)=>BookDetailsScreen(bookManager:manager),
+          "/": (context)=> BookListScreen(),
+          "/book-details":(context)=>BookDetailsScreen(),
         },
         
     );

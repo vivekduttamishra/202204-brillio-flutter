@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/book.dart';
+import 'network-failsafe-image.dart';
 
 class BookSummary extends StatelessWidget {
   const BookSummary({
@@ -14,7 +15,7 @@ class BookSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         SizedBox(height: 10),
@@ -24,11 +25,12 @@ class BookSummary extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         Divider(),
-        Image.network(
+        NetworkFailsafeImage(
           book.cover,
           height: 450,
-          fit: BoxFit.contain,
-          
+          width:450*6/8,
+          title:book.title,
+          fit: BoxFit.contain,          
         ),
         Divider(),
         Text(
