@@ -22,7 +22,7 @@ class BookListItem extends StatelessWidget {
         //         (ctx)=> BookDetailsScreen(book) ),
         // );
 
-        Navigator.of(context).pushNamed("/book-details", arguments: book.isbn);
+        Navigator.of(context).pushNamed(BookDetailsScreen.id, arguments: book.isbn);
       },
       child: Card(
         margin: EdgeInsets.only(bottom: 10),

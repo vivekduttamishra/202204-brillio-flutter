@@ -10,6 +10,7 @@ import '../widgets/book-summary.dart';
 import 'titled-screen.dart';
 
 class BookDetailsScreen extends StatefulWidget {
+  static const id='/book/details';
   final BookManager bookManager=new BookManager();
   BookDetailsScreen({Key? key}) : super(key: key);
 

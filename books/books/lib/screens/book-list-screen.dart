@@ -4,14 +4,18 @@
 import 'package:flutter/material.dart';
 
 import '../models/book.dart';
+import '../widgets/app-drawer.dart';
 import '../widgets/app-icon.dart';
 import '../widgets/book-editor.dart';
 import '../widgets/book-list-item.dart';
 import '../models/BookManager.dart';
+import 'book-add-screen.dart';
+import 'book-details-screen.dart';
+import 'user-login-screen.dart';
 
 
 class BookListScreen extends StatefulWidget {
-
+  static const id='/';
   final BookManager bookManager=BookManager();
   BookListScreen({Key? key}) : super(key: key);
 
@@ -46,7 +50,9 @@ class _BookListScreenState extends State<BookListScreen> {
         actions:<Widget>[
           IconButton(
             icon:Icon(Icons.add),
-            onPressed:(){},
+            onPressed:(){
+              Navigator.of(context).pushNamed(BookAddScreen.id);
+            },
             ),
         ],
       ),
@@ -54,6 +60,11 @@ class _BookListScreenState extends State<BookListScreen> {
         padding: EdgeInsets.all(10),
         child: createSmartList(books),
         
+      ),
+
+      drawer: Drawer(
+        
+        child: AppDrawer(),
       ),
   
     );
@@ -87,3 +98,4 @@ class _BookListScreenState extends State<BookListScreen> {
 
   
 }
+

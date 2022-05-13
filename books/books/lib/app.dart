@@ -3,8 +3,10 @@
 
 import 'package:flutter/material.dart';
 
+import 'screens/book-add-screen.dart';
 import 'screens/book-details-screen.dart';
 import 'screens/book-list-screen.dart';
+import 'screens/user-login-screen.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -64,17 +66,23 @@ class App extends StatelessWidget {
               fontFamily: 'Poppins',
               fontSize:14,
             ),
+            labelLarge:TextStyle(
+                fontFamily: 'Poppins',
+                fontSize:16,
+            ),
             labelMedium: TextStyle(
-              fontFamily: 'Heading',
+              fontFamily: 'Poppins',
               fontSize:16,
-              color:Colors.blue,
+              
             )
           )
         ),
 
         routes: {
-          "/": (context)=> BookListScreen(),
-          "/book-details":(context)=>BookDetailsScreen(),
+          BookListScreen.id: (context)=> BookListScreen(),
+          BookDetailsScreen.id:(context)=>BookDetailsScreen(),
+          BookAddScreen.id: (context)=>BookAddScreen(),
+          UserLoginScreen.id: (context)=>UserLoginScreen(),
         },
         
     );
